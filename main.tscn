@@ -1,16 +1,11 @@
-[gd_scene load_steps=12 format=3 uid="uid://dti4ug7vraxhs"]
+[gd_scene load_steps=10 format=3 uid="uid://dti4ug7vraxhs"]
 
+[ext_resource type="Script" path="res://World.gd" id="1_hk8vn"]
 [ext_resource type="PackedScene" uid="uid://jwgeeyijajcn" path="res://models/house1.fbx" id="1_km5l0"]
 [ext_resource type="PackedScene" uid="uid://b2eypxsobojwq" path="res://models/house2.fbx" id="3_04eca"]
-[ext_resource type="Shader" path="res://ground.gdshader" id="3_hfehs"]
-[ext_resource type="Texture2D" uid="uid://clstbfhs0gcei" path="res://textures/ground.png" id="4_orl45"]
 [ext_resource type="PackedScene" uid="uid://bw4tj28a5t1a6" path="res://models/road1.fbx" id="5_c6nle"]
 [ext_resource type="PackedScene" uid="uid://ejbghach522n" path="res://models/road2.fbx" id="6_abcer"]
 [ext_resource type="Texture2D" uid="uid://dchqd87rjhcgq" path="res://sky1.png" id="7_w5c0n"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_voco2"]
-shader = ExtResource("3_hfehs")
-shader_parameter/ground = ExtResource("4_orl45")
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_2tr2r"]
 panorama = ExtResource("7_w5c0n")
@@ -38,7 +33,8 @@ fog_sun_scatter = 0.12
 fog_density = 0.0197
 fog_sky_affect = 0.085
 
-[node name="Node3D" type="Node3D"]
+[node name="World" type="Node3D"]
+script = ExtResource("1_hk8vn")
 
 [node name="house1" parent="." instance=ExtResource("1_km5l0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 1)
@@ -49,16 +45,8 @@ transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 5, 1, 
 [node name="house3" parent="." instance=ExtResource("3_04eca")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 5)
 
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.963818, 0, 0, 0, 1.10379, 3.42684, 1.04279, 7.05312)
-
-[node name="Ground" type="Sprite2D" parent="."]
-material = SubResource("ShaderMaterial_voco2")
-position = Vector2(222, 168)
-texture = ExtResource("4_orl45")
-
 [node name="road1" parent="." instance=ExtResource("5_c6nle")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.2543, 0, 4.45915)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.16201, 0, 4.49625)
 
 [node name="road2" parent="." instance=ExtResource("6_abcer")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 3)
@@ -75,3 +63,12 @@ shadow_enabled = true
 shadow_bias = 0.0
 shadow_opacity = 0.68
 shadow_blur = 1.757
+
+[node name="CameraPivot" type="Node3D" parent="."]
+
+[node name="SkyCamera" type="Camera3D" parent="CameraPivot"]
+transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 75, 75)
+projection = 1
+
+[node name="Origin" type="MeshInstance3D" parent="CameraPivot"]
+transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 0, 0, 0)
