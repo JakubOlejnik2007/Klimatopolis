@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://di21ap7m2j10k"
-path.s3tc="res://.godot/imported/door.png-4ad4ab0c545155655bbef277d86eb152.s3tc.ctex"
+uid="uid://bk682kms2l3dk"
+path.s3tc="res://.godot/imported/roof.png-29adfd8c1e5afa7b00c569cbd0106b4a.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://door.png"
-dest_files=["res://.godot/imported/door.png-4ad4ab0c545155655bbef277d86eb152.s3tc.ctex"]
+source_file="res://textures/roof.png"
+dest_files=["res://.godot/imported/roof.png-29adfd8c1e5afa7b00c569cbd0106b4a.s3tc.ctex"]
 
 [params]
 

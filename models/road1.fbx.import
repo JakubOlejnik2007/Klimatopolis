@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://ejbghach522n"
-path="res://.godot/imported/road2.fbx-30837be3fe2750d26b26a3cb91db9ed5.scn"
+uid="uid://bw4tj28a5t1a6"
+path="res://.godot/imported/road1.fbx-ffeaefcd5be4bc156d01622a188e65ee.scn"
 
 [deps]
 
-source_file="res://road2.fbx"
-dest_files=["res://.godot/imported/road2.fbx-30837be3fe2750d26b26a3cb91db9ed5.scn"]
+source_file="res://models/road1.fbx"
+dest_files=["res://.godot/imported/road1.fbx-ffeaefcd5be4bc156d01622a188e65ee.scn"]
 
 [params]
 
@@ -31,7 +31,18 @@ animation/trimming=true
 animation/remove_immutable_tracks=true
 animation/import_rest_as_RESET=false
 import_script/path=""
-_subresources={}
+_subresources={
+"materials": {
+"Material.003": {
+"use_external/enabled": true,
+"use_external/path": "res://materials/road.tres"
+},
+"roadthing": {
+"use_external/enabled": false,
+"use_external/path": "res://materials/road.tres"
+}
+}
+}
 fbx/importer=0
 fbx/allow_geometry_helper_nodes=false
 fbx/embedded_image_handling=1

@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bk8kwaak4pgsn"
-path.s3tc="res://.godot/imported/concrete.png-3327bed23e228e4e8c21dc2ce53ed2b9.s3tc.ctex"
+uid="uid://bfujfgvvybn7t"
+path.s3tc="res://.godot/imported/woodPlanks.png-92611deac4e1e0bd029c33e785b39be8.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://concrete.png"
-dest_files=["res://.godot/imported/concrete.png-3327bed23e228e4e8c21dc2ce53ed2b9.s3tc.ctex"]
+source_file="res://textures/woodPlanks.png"
+dest_files=["res://.godot/imported/woodPlanks.png-92611deac4e1e0bd029c33e785b39be8.s3tc.ctex"]
 
 [params]
 

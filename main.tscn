@@ -1,15 +1,42 @@
-[gd_scene load_steps=8 format=3 uid="uid://dti4ug7vraxhs"]
+[gd_scene load_steps=12 format=3 uid="uid://dti4ug7vraxhs"]
 
-[ext_resource type="PackedScene" uid="uid://jwgeeyijajcn" path="res://house1.fbx" id="1_km5l0"]
-[ext_resource type="PackedScene" uid="uid://b2eypxsobojwq" path="res://house2.fbx" id="3_04eca"]
+[ext_resource type="PackedScene" uid="uid://jwgeeyijajcn" path="res://models/house1.fbx" id="1_km5l0"]
+[ext_resource type="PackedScene" uid="uid://b2eypxsobojwq" path="res://models/house2.fbx" id="3_04eca"]
 [ext_resource type="Shader" path="res://ground.gdshader" id="3_hfehs"]
-[ext_resource type="Texture2D" uid="uid://clstbfhs0gcei" path="res://ground.png" id="4_orl45"]
-[ext_resource type="PackedScene" uid="uid://bw4tj28a5t1a6" path="res://road1.fbx" id="5_c6nle"]
-[ext_resource type="PackedScene" uid="uid://ejbghach522n" path="res://road2.fbx" id="6_abcer"]
+[ext_resource type="Texture2D" uid="uid://clstbfhs0gcei" path="res://textures/ground.png" id="4_orl45"]
+[ext_resource type="PackedScene" uid="uid://bw4tj28a5t1a6" path="res://models/road1.fbx" id="5_c6nle"]
+[ext_resource type="PackedScene" uid="uid://ejbghach522n" path="res://models/road2.fbx" id="6_abcer"]
+[ext_resource type="Texture2D" uid="uid://dchqd87rjhcgq" path="res://sky1.png" id="7_w5c0n"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_voco2"]
 shader = ExtResource("3_hfehs")
 shader_parameter/ground = ExtResource("4_orl45")
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_2tr2r"]
+panorama = ExtResource("7_w5c0n")
+filter = false
+
+[sub_resource type="Sky" id="Sky_lypet"]
+sky_material = SubResource("PanoramaSkyMaterial_2tr2r")
+
+[sub_resource type="Environment" id="Environment_3cury"]
+background_mode = 2
+background_color = Color(0.135617, 0.135617, 0.135617, 1)
+background_energy_multiplier = 1.21
+sky = SubResource("Sky_lypet")
+ssao_enabled = true
+ssao_radius = 0.78
+ssao_intensity = 13.7
+ssao_detail = 0.15
+ssao_horizon = 0.22
+ssao_sharpness = 0.93
+glow_intensity = 0.24
+glow_bloom = 1.0
+fog_enabled = true
+fog_light_color = Color(0.634969, 0.666792, 0.716795, 1)
+fog_sun_scatter = 0.12
+fog_density = 0.0197
+fog_sky_affect = 0.085
 
 [node name="Node3D" type="Node3D"]
 
@@ -25,9 +52,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 5)
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.963818, 0, 0, 0, 1.10379, 3.42684, 1.04279, 7.05312)
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Camera3D"]
-transform = Transform3D(0.588999, 0, 0.808134, 0, 1, 0, -0.808134, 0, 0.588999, 3.54868, 23.2946, 0.026104)
-
 [node name="Ground" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_voco2")
 position = Vector2(222, 168)
@@ -38,3 +62,16 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.2543, 0, 4.45915)
 
 [node name="road2" parent="." instance=ExtResource("6_abcer")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 3)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_3cury")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.219576, -0.446521, 0.867413, 0.488435, 0.819972, 0.298458, -0.844522, 0.35814, 0.398143, 0, 0, 7.079)
+light_energy = 1.757
+light_indirect_energy = 16.0
+light_bake_mode = 1
+shadow_enabled = true
+shadow_bias = 0.0
+shadow_opacity = 0.68
+shadow_blur = 1.757

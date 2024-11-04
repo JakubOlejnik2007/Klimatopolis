@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cpq67wuiwtmb1"
-path="res://.godot/imported/roadthing.png-42f306984ead38d9a87e40688c984512.ctex"
+path="res://.godot/imported/roadthing.png-2741284da01f55fc710b061978fe1de3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://roadthing.png"
-dest_files=["res://.godot/imported/roadthing.png-42f306984ead38d9a87e40688c984512.ctex"]
+source_file="res://textures/roadthing.png"
+dest_files=["res://.godot/imported/roadthing.png-2741284da01f55fc710b061978fe1de3.ctex"]
 
 [params]
 
