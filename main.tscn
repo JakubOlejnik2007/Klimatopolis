@@ -1,11 +1,13 @@
-[gd_scene load_steps=10 format=3 uid="uid://dti4ug7vraxhs"]
+[gd_scene load_steps=12 format=3 uid="uid://dti4ug7vraxhs"]
 
 [ext_resource type="Script" path="res://World.gd" id="1_hk8vn"]
-[ext_resource type="PackedScene" uid="uid://jwgeeyijajcn" path="res://models/house1.fbx" id="1_km5l0"]
-[ext_resource type="PackedScene" uid="uid://b2eypxsobojwq" path="res://models/house2.fbx" id="3_04eca"]
-[ext_resource type="PackedScene" uid="uid://bw4tj28a5t1a6" path="res://models/road1.fbx" id="5_c6nle"]
-[ext_resource type="PackedScene" uid="uid://ejbghach522n" path="res://models/road2.fbx" id="6_abcer"]
+[ext_resource type="PackedScene" uid="uid://bdkyunx585upl" path="res://models/house1.fbx" id="1_km5l0"]
+[ext_resource type="PackedScene" uid="uid://bk1xph0o6d8p5" path="res://models/house2.fbx" id="3_04eca"]
+[ext_resource type="PackedScene" uid="uid://lcig8wlwgi2g" path="res://models/road1.fbx" id="5_c6nle"]
+[ext_resource type="PackedScene" uid="uid://calmbgneakfie" path="res://models/road2.fbx" id="6_abcer"]
+[ext_resource type="PackedScene" uid="uid://dgstyl5yytc7v" path="res://models/ground.fbx" id="7_pkm0m"]
 [ext_resource type="Texture2D" uid="uid://dchqd87rjhcgq" path="res://sky1.png" id="7_w5c0n"]
+[ext_resource type="PackedScene" uid="uid://bg833cbgr75cg" path="res://models/canal.fbx" id="8_lrcqd"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_2tr2r"]
 panorama = ExtResource("7_w5c0n")
@@ -35,25 +37,11 @@ fog_sky_affect = 0.085
 [node name="World" type="Node3D"]
 script = ExtResource("1_hk8vn")
 
-[node name="Pivot" type="Node3D" parent="."]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_3cury")
 
-[node name="house1" parent="Pivot" instance=ExtResource("1_km5l0")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 1)
-
-[node name="house2" parent="Pivot" instance=ExtResource("1_km5l0")]
-transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 5, 1, 1)
-
-[node name="house3" parent="Pivot" instance=ExtResource("3_04eca")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 5)
-
-[node name="road1" parent="Pivot" instance=ExtResource("5_c6nle")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.16201, 0, 4.49625)
-
-[node name="road2" parent="Pivot" instance=ExtResource("6_abcer")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 3)
-
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Pivot"]
-transform = Transform3D(0.219576, -0.446521, 0.867413, 0.488435, 0.819972, 0.298458, -0.844522, 0.358141, 0.398143, 0, 0, 7.079)
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.219576, -0.446521, 0.867413, 0.488435, 0.819972, 0.298458, -0.844522, 0.35814, 0.398143, 0, 0, 7.079)
 light_energy = 1.757
 light_indirect_energy = 16.0
 light_bake_mode = 1
@@ -62,18 +50,29 @@ shadow_bias = 0.0
 shadow_opacity = 0.68
 shadow_blur = 1.757
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_3cury")
-
 [node name="CameraPivot" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0808182, 0, -0.19178)
 
 [node name="SkyCamera" type="Camera3D" parent="CameraPivot"]
-transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 12.5518, 12.5518)
+transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 75, 75)
 projection = 1
-size = 19.757
-near = 0.001
-far = 57.21
 
 [node name="Origin" type="MeshInstance3D" parent="CameraPivot"]
 transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 0, 0, 0)
+
+[node name="road2" parent="." instance=ExtResource("6_abcer")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.0215, -2.38419e-07, 0.897167)
+
+[node name="road1" parent="." instance=ExtResource("5_c6nle")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.99922, 0, 1.2516)
+
+[node name="house2" parent="." instance=ExtResource("3_04eca")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.728795, 0, 2.79844)
+
+[node name="house1" parent="." instance=ExtResource("1_km5l0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.05925, 0, 3.0123)
+
+[node name="ground" parent="." instance=ExtResource("7_pkm0m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.6923, 0, 4.71065)
+
+[node name="canal" parent="." instance=ExtResource("8_lrcqd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.3363, 0, 1.44605)

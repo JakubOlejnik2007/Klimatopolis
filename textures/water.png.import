@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bih17f68uvjc3"
-path.s3tc="res://.godot/imported/grass.png-c637977c146fec1b1e97e5c999cb4594.s3tc.ctex"
+uid="uid://gt5t1au05w3m"
+path.s3tc="res://.godot/imported/water.png-25a75e914e0cd51cf077b48ffc139669.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://textures/grass.png"
-dest_files=["res://.godot/imported/grass.png-c637977c146fec1b1e97e5c999cb4594.s3tc.ctex"]
+source_file="res://textures/water.png"
+dest_files=["res://.godot/imported/water.png-25a75e914e0cd51cf077b48ffc139669.s3tc.ctex"]
 
 [params]
 
