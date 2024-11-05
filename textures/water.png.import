@@ -2,26 +2,46 @@
 
 importer="texture"
 type="CompressedTexture2D"
+<<<<<<< HEAD
 uid="uid://dd7pts4jndn4i"
 path="res://.godot/imported/water.png-25a75e914e0cd51cf077b48ffc139669.ctex"
 metadata={
 "vram_texture": false
+=======
+uid="uid://gt5t1au05w3m"
+path.s3tc="res://.godot/imported/water.png-25a75e914e0cd51cf077b48ffc139669.s3tc.ctex"
+metadata={
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
+>>>>>>> 435ef8bb718f4c34fa20121a8721ee5da1d20fd2
 }
 
 [deps]
 
 source_file="res://textures/water.png"
+<<<<<<< HEAD
 dest_files=["res://.godot/imported/water.png-25a75e914e0cd51cf077b48ffc139669.ctex"]
 
 [params]
 
 compress/mode=0
+=======
+dest_files=["res://.godot/imported/water.png-25a75e914e0cd51cf077b48ffc139669.s3tc.ctex"]
+
+[params]
+
+compress/mode=2
+>>>>>>> 435ef8bb718f4c34fa20121a8721ee5da1d20fd2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1
 compress/normal_map=0
 compress/channel_pack=0
+<<<<<<< HEAD
 mipmaps/generate=false
+=======
+mipmaps/generate=true
+>>>>>>> 435ef8bb718f4c34fa20121a8721ee5da1d20fd2
 mipmaps/limit=-1
 roughness/mode=0
 roughness/src_normal=""
@@ -31,4 +51,8 @@ process/normal_map_invert_y=false
 process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
+<<<<<<< HEAD
 detect_3d/compress_to=1
+=======
+detect_3d/compress_to=0
+>>>>>>> 435ef8bb718f4c34fa20121a8721ee5da1d20fd2

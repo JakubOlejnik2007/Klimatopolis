@@ -3,7 +3,7 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://bw4tj28a5t1a6"
+uid="uid://lcig8wlwgi2g"
 path="res://.godot/imported/road1.fbx-ffeaefcd5be4bc156d01622a188e65ee.scn"
 
 [deps]
@@ -35,10 +35,6 @@ _subresources={
 "materials": {
 "Material.003": {
 "use_external/enabled": true,
-"use_external/path": "res://materials/road.tres"
-},
-"roadthing": {
-"use_external/enabled": false,
 "use_external/path": "res://materials/road.tres"
 }
 }
