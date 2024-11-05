@@ -3,17 +3,12 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-<<<<<<< HEAD
-uid="uid://b6ktl7sfrhucf"
-=======
-uid="uid://dgstyl5yytc7v"
->>>>>>> 435ef8bb718f4c34fa20121a8721ee5da1d20fd2
-path="res://.godot/imported/ground.fbx-14224a717fe4ef7469e4de999f367cc3.scn"
+uid="uid://j6uwxqawg6gf"
+valid=false
 
 [deps]
 
 source_file="res://models/ground.fbx"
-dest_files=["res://.godot/imported/ground.fbx-14224a717fe4ef7469e4de999f367cc3.scn"]
 
 [params]
 
@@ -36,6 +31,6 @@ animation/remove_immutable_tracks=true
 animation/import_rest_as_RESET=false
 import_script/path=""
 _subresources={}
-fbx/importer=0
+fbx/importer=1
 fbx/allow_geometry_helper_nodes=false
 fbx/embedded_image_handling=1
