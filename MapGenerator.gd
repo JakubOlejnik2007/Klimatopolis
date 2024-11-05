@@ -1,70 +1,58 @@
-extends Node3D
-
-class_name MapGenerator3D
-
 enum TerrainType { GRASS, VOID, WATER }
 
-var map_size = Vector2(40, 40)
-var map = []
-
-func _ready():
-	map = generate_map(map_size)
-	print_map()
-
 func generate_map(size: Vector2) -> Array:
-	var generated_map = []
-	for y in range(size.y):
-		var row = []
-		for x in range(size.x):
-			row.append(TerrainType.VOID)
-		generated_map.append(row)
+	var map = []
+	var noise = FastNoiseLite.new()
 	
-	generate_island(generated_map)
-	generate_water(generated_map)
-	return generated_map
+	noise.seed = randi()  # Ustawienie losowego nasienia dla różnorodności mapy
+	var scale = 0.1  # Skala szumu dla lepszego detalu
+	var island_shape_noise = FastNoiseLite.new()
+	island_shape_noise.seed = randi()  # Ustawiamy inne nasienie dla kształtu wyspy
+	island_shape_noise.set_noise_type(FastNoiseLite.NoiseType.TYPE_SIMPLEX)
+	
+	# Ustal ilość max komórek WATER
+	var max_water_cells = int(size.x * size.y * 0.3)  # Woda <= 40% mapy
+	var water_cells_count = 0  # Licznik komórek wody
 
-func generate_island(map: Array):
-	var island_center = Vector2(map_size.x / 2, map_size.y / 2)
-	var max_radius = min(map_size.x, map_size.y) / 3  # Maksymalny promień wyspy
+	for x in range(size.x):
+		var row = []
+		for y in range(size.y):
+			# Uzyskanie wartości hałasu dla kształtu wyspy
+			var island_value = island_shape_noise.get_noise_2d(x * 0.15, y * 0.15)
 
-	for y in range(map_size.y):
-		for x in range(map_size.x):
-			var distance = (island_center - Vector2(x, y)).length()
-			if distance < max_radius:
-				map[y][x] = TerrainType.GRASS  # Zwiększamy obszar GRASS
+			# Wyznaczenie terenu na podstawie wartości hałasu
+			if island_value > 0.2:  # Obszar wyspy
+				row.append(TerrainType.GRASS)
+			else:
+				# Przydzielanie wody, jeśli nie przekroczy to 40%
+				if water_cells_count < max_water_cells:
+					row.append(TerrainType.WATER)
+					water_cells_count += 1
+				else:
+					row.append(TerrainType.GRASS)  # Po osiągnięciu limitu wody dodajemy GRASS
 
-				# Wprowadzenie dodatkowej losowości dla naturalnego kształtu
-				if randf() < (max_radius - distance) / max_radius * 0.5:  # Zmniejszamy losowość, by bardziej ujednolicić ląd
-					map[y][x] = TerrainType.GRASS
+		map.append(row)
 
-func generate_water(map: Array):
-	var water_path_start = Vector2(randf() * map_size.x, 0)
-	var water_path_end = Vector2(randf() * map_size.x, map_size.y)
-	var river_width = int(randf() * 3 + 2)  # Szerokość rzeki
+	# Wprowadzenie losowych wycięć w obszarze wyspy
+	for i in range(20):  # Zwiększenie liczby wycięć
+		var cut_x = int(randi()) % int(size.x)
+		var cut_y = int(randi()) % int(size.y)
+		var cut_radius = randi() % 4 + 2  # Zmniejszenie promienia wycięcia dla większej precyzji
+		
+		for dx in range(-cut_radius, cut_radius + 1):
+			for dy in range(-cut_radius, cut_radius + 1):
+				if cut_x + dx >= 0 and cut_x + dx < size.x and cut_y + dy >= 0 and cut_y + dy < size.y:
+					if dx * dx + dy * dy <= cut_radius * cut_radius:  # Ograniczenie do kształtu okręgu
+						if map[cut_x + dx][cut_y + dy] == TerrainType.GRASS:
+							map[cut_x + dx][cut_y + dy] = TerrainType.WATER  # Zmiana na WATER
+							water_cells_count += 1  # Zwiększanie licznika wody
 
-	for i in range(int(map_size.y / 3), int(map_size.y * 2 / 3)):
-		var x_pos = int(water_path_start.x + (water_path_end.x - water_path_start.x) * (i / map_size.y) + randf_range(-2, 2))
-		if x_pos >= 0 and x_pos < map_size.x:
-			for width in range(-river_width, river_width + 1):
-				var x = x_pos + width
-				if x >= 0 and x < map_size.x:
-					map[i][x] = TerrainType.WATER
+	# Wprowadzenie dodatkowych wycięć w krawędziach
+	for x in range(size.x):
+		for y in range(size.y):
+			if (x < 2 or x >= size.x - 2 or y < 2 or y >= size.y - 2) and map[x][y] == TerrainType.GRASS:
+				if randf() < 0.3:  # Losowa szansa na wycięcie w krawędziach
+					map[x][y] = TerrainType.WATER  # Zmiana na WATER
+					water_cells_count += 1  # Zwiększanie licznika wody
 
-	# Zapewnij, że otoczenie rzeki również jest terenem GRASS, jeśli to możliwe
-	for y in range(int(map_size.y / 3), int(map_size.y * 2 / 3)):
-		for x in range(map_size.x):
-			if map[y][x] == TerrainType.WATER:
-				for dx in range(-1, 2):
-					var nx = x + dx
-					if nx >= 0 and nx < map_size.x and map[y + 1][nx] == TerrainType.VOID:
-						map[y + 1][nx] = TerrainType.GRASS  # Przekształcamy VOID w GRASS wokół rzeki
-
-func print_map():
-	for row in map:
-		var row_string = ""
-		for cell in row:
-			match cell:
-				TerrainType.GRASS: row_string += "G "
-				TerrainType.WATER: row_string += "W "
-				TerrainType.VOID: row_string += ". "
-		print(row_string)
+	return map
