@@ -1,6 +1,8 @@
 extends Node3D
 
-var navigation_speed = 0.5
+var navigation_speed = 0.05
+var rotation_speed = 0.01
+
 var viewport_minimum = 200
 var viewport_resolution_variance = 800
 var viewport_resolution = Vector2(1200, 800)
@@ -31,9 +33,9 @@ func _process(_delta):
 		$CameraPivot.translate(-forward.cross(Vector3.UP).normalized() * navigation_speed / 1.5 * -1)
 
 	if Input.is_action_pressed("ui_left"):
-		$CameraPivot.rotate_y(1)
+		$CameraPivot.rotate_y(rotation_speed)
 	if Input.is_action_pressed("ui_right"):
-		$CameraPivot.rotate_y(-1)
+		$CameraPivot.rotate_y(-rotation_speed)
 
 func _input(event):
 	if Input.is_action_just_pressed("zoom_in"):

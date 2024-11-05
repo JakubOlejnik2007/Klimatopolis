@@ -27,10 +27,9 @@ ssao_horizon = 0.22
 ssao_sharpness = 0.93
 glow_intensity = 0.24
 glow_bloom = 1.0
-fog_enabled = true
 fog_light_color = Color(0.634969, 0.666792, 0.716795, 1)
 fog_sun_scatter = 0.12
-fog_density = 0.0197
+fog_density = 0.0056
 fog_sky_affect = 0.085
 
 [node name="World" type="Node3D"]
