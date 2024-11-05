@@ -3,12 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://dxh21f3qtfnrj"
-valid=false
+uid="uid://bg833cbgr75cg"
+path="res://.godot/imported/canal.fbx-e7e4574608e98e542cc6a51037acbf6f.scn"
 
 [deps]
 
 source_file="res://models/canal.fbx"
+dest_files=["res://.godot/imported/canal.fbx-e7e4574608e98e542cc6a51037acbf6f.scn"]
 
 [params]
 
@@ -30,7 +31,14 @@ animation/trimming=true
 animation/remove_immutable_tracks=true
 animation/import_rest_as_RESET=false
 import_script/path=""
-_subresources={}
-fbx/importer=1
+_subresources={
+"materials": {
+"water": {
+"use_external/enabled": true,
+"use_external/path": "res://materials/water.tres"
+}
+}
+}
+fbx/importer=0
 fbx/allow_geometry_helper_nodes=false
 fbx/embedded_image_handling=1
