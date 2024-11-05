@@ -10,6 +10,7 @@ var viewport_resolution = Vector2(1200, 800)
 func _ready():
 	DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
 	_update_viewport_resolution()
+	$CameraPivot/SkyCamera.size = 25
 	get_tree().get_root().set_size(viewport_resolution)
 
 
@@ -33,9 +34,9 @@ func _process(_delta):
 		$CameraPivot.translate(-forward.cross(Vector3.UP).normalized() * navigation_speed / 1.5 * -1)
 
 	if Input.is_action_pressed("ui_left"):
-		$CameraPivot.rotate_y(rotation_speed)
+		$Pivot.rotate_y(rotation_speed)
 	if Input.is_action_pressed("ui_right"):
-		$CameraPivot.rotate_y(-rotation_speed)
+		$Pivot.rotate_y(-rotation_speed)
 
 func _input(event):
 	if Input.is_action_just_pressed("zoom_in"):
@@ -46,7 +47,7 @@ func _input(event):
 
 func _adjust_camera_size(delta):
 	var new_size = clamp($CameraPivot/SkyCamera.size + delta, 5, 100)
-	if new_size != $CameraPivot/SkyCamera.size:
+	if new_size != $CameraPivot/SkyCamera.size and new_size < 34:
 		$CameraPivot/SkyCamera.size = new_size
 		navigation_speed = new_size / 100.0
-		print("Navigation Speed: ", navigation_speed)
+		print("Navigation Speed: ", $CameraPivot/SkyCamera.size)
